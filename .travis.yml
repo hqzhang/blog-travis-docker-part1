@@ -8,6 +8,7 @@ env:
 
 before_install:
   - sudo apt-get update
+  - sudo docker ps
   - uname -a
   - lsb_release -c
   - ./docker-ins.sh
