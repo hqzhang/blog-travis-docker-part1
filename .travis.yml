@@ -8,25 +8,23 @@ env:
 
 before_install:
   - sudo apt-get update
-  - sudo docker ps
+  - docker ps
   - uname -a
-  - lsb_release -c
     #- ./docker-ins.sh
-  - sudo docker ps
 
 before_script:
-  - sudo docker pull wavecloud/cowspeak || true
+  - docker pull wavecloud/cowspeak || true
 script:
-  - sudo docker build --pull --cache-from wavecloud/cowspeak --tag wavecloud/cowspeak .
-  - sudo docker run wavecloud/cowspeak
+  - docker build --pull --cache-from wavecloud/cowspeak --tag wavecloud/cowspeak .
+  - docker run wavecloud/cowspeak
 
 after_script:
-  - sudo docker images
+  - docker images
 
 before_deploy:
-  - sudo docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
 deploy:
   provider: script
-  script: sudo docker push wavecloud/cowspeak
+  script: docker push wavecloud/cowspeak
   on:
     branch: master
