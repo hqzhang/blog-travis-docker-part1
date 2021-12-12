@@ -11,7 +11,7 @@ before_install:
   - sudo docker ps
   - uname -a
   - lsb_release -c
-  - ./docker-ins.sh
+    #- ./docker-ins.sh
   - sudo docker ps
 
 before_script:
