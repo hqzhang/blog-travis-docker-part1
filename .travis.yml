@@ -25,6 +25,6 @@ before_deploy:
   - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
 deploy:
   provider: script
-  script: docker push wavecloud/cowspeak
+  script: docker push wavecloud/cowspeak && echo "SUCCESS DEPLOY"
   on:
     branch: master
