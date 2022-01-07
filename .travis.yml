@@ -13,18 +13,18 @@ before_install:
     #- ./docker-ins.sh
 
 before_script:
-  - docker pull wavecloud/cowspeak || true
+  - docker pull wavecloud/cowspeak && echo "PULL SUCESS"
 script:
   - docker build --pull --cache-from wavecloud/cowspeak --tag wavecloud/cowspeak .
   - docker run wavecloud/cowspeak
 
 after_script:
-  - docker images
+  - docker images && echo "LIST SUCESS"
 
 before_deploy:
-  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS" && echo "LOGIN SUCESS"
 deploy:
   provider: script
-  script: docker push wavecloud/cowspeak && echo "SUCCESS DEPLOY"
+  script: docker push wavecloud/cowspeak && echo "DEPLOY SUCESS"
   on:
     branch: master
